@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon, ClockIcon } from "@heroicons/react/outline";
+import { BellIcon, MenuIcon, XIcon, ClockIcon, CalendarIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
 import LiveChatIcon from "components/icons/LiveChatIcon";
@@ -25,28 +25,28 @@ export default function Navbar() {
                     height={50}
                   />
                 </div>
-                <div className="hidden sm:ml-2 sm:flex sm:space-x-2">
+                <div className="hidden sm:ml-2 sm:flex sm:space-x-2 items-center">
                   <Link href="/">
-                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
+                    <a className="text-gray-900 inline-flex items-center px-1 text-sm hover:text-gray-500">
                       About
                     </a>
                   </Link>
 
                   <Link href="/">
-                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
+                    <a className="text-gray-900 inline-flex items-center px-1 text-sm hover:text-gray-500">
                       How it works
                     </a>
                   </Link>
 
                   <Link href="/">
-                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
+                    <a className="text-gray-900 inline-flex items-center px-1 text-sm hover:text-gray-500">
                      Fees
                     </a>
                   </Link>
 
                   <Link href="/book">
-                    <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
-                     <ClockIcon className="h-5 w-5 mr-1"/>
+                    <a className="text-white inline-flex items-center px-2 text-sm bg-gray-600 hover:bg-gray-700 h-8 rounded-md inline-block">
+                     <CalendarIcon className="h-5 w-5 mr-1"/>
                       Book a lawyer
                     </a>
                   </Link>
@@ -62,7 +62,7 @@ export default function Navbar() {
                 />
 
                 <Link href="/chat">
-                  <a className="mx-4">
+                  <a className="mx-3">
                     <LiveChatIcon />
                   </a>
                 </Link>

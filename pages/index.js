@@ -1,7 +1,13 @@
+import Carousel from 'components/carousel/carousel'
+import InfoMatic from 'components/home/infomatic'
+import Incentives from 'components/home/incentives'
+
 export default function Home() {
   return (
-    <div className='text-3xl font-bold underline'>
-      <p>init</p>
+    <div>
+      <Carousel />
+      <InfoMatic />
+      <Incentives />
     </div>
   )
 }

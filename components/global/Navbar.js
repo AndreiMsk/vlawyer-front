@@ -19,9 +19,9 @@ export default function Navbar() {
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <Image
-                    src="/images/logo.png"
+                    src="/images/logo-black.png"
                     alt="Picture of the author"
-                    width={50}
+                    width={65}
                     height={50}
                   />
                 </div>

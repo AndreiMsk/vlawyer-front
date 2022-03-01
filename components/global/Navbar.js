@@ -25,10 +25,10 @@ export default function Navbar() {
                     height={50}
                   />
                 </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <div className="hidden sm:ml-2 sm:flex sm:space-x-2">
                   <Link href="/">
                     <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
-                      About us
+                      About
                     </a>
                   </Link>
 
@@ -52,7 +52,7 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
-              <div className="hidden sm:ml-6 sm:flex sm:items-center">
+              <div className="hidden sm:ml-4 sm:flex sm:items-center">
                 <Image
                   src="/images/live.png"
                   alt="Picture of the author"

@@ -45,7 +45,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link href="/book">
-                    <a className="text-white inline-flex items-center px-2 text-sm bg-gray-600 hover:bg-gray-700 h-8 rounded-md inline-block">
+                    <a className="text-white inline-flex items-center px-2 text-xs bg-gray-600 hover:bg-gray-700 h-8 rounded-md inline-block">
                      <CalendarIcon className="h-5 w-5 mr-1"/>
                       Book a lawyer
                     </a>

@@ -11,7 +11,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Navbar handleDrawer={handleDrawer}/>
-      <main className="min-h-screen relative z-10">{children}</main>
+      <main className="min-h-screen relative z-20">{children}</main>
       <LiveChat className="z-100" drawer={drawer} handleDrawer={handleDrawer} />
       <Footer />
     </>

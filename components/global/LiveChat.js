@@ -1,7 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
 import { XCircleIcon } from '@heroicons/react/solid'
 
 export default function LiveChat({drawer, handleDrawer}) {

@@ -9,7 +9,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar() {
+export default function Navbar({handleDrawer}) {
   return (
     <Disclosure as="nav" className="bg-white shadow sticky top-0 right-0 z-20">
       {({ open }) => (
@@ -61,11 +61,10 @@ export default function Navbar() {
                   className="cursor-pointer"
                 />
 
-                <Link href="/chat">
-                  <a className="mx-3">
+                  <span onClick={handleDrawer} className="inline-block mx-2">
                     <LiveChatIcon />
-                  </a>
-                </Link>
+                  </span>
+  
                 <Link href="/">
                   <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
                     Register

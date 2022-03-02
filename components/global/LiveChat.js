@@ -3,12 +3,10 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-export default function LiveChat() {
-  const [open, setOpen] = useState(true)
-
+export default function LiveChat({drawer, handleDrawer}) {
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden z-50" onClose={setOpen}>
+    <Transition.Root show={drawer} as={Fragment}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden z-50" onClose={handleDrawer}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
@@ -31,7 +29,7 @@ export default function LiveChat() {
                         <button
                           type="button"
                           className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                          onClick={() => setOpen(false)}
+                          onClick={handleDrawer}
                         >
                           <span className="sr-only">Close panel</span>
                           <XIcon className="h-6 w-6" aria-hidden="true" />

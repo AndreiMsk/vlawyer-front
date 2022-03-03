@@ -1,12 +1,16 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XCircleIcon } from '@heroicons/react/solid'
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { XIcon } from "@heroicons/react/outline";
 
-export default function LiveChat({drawer, handleDrawer}) {
+const LiveChat = ({ drawer, handleDrawer }) => {
   return (
     <Transition.Root show={drawer} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden z-50" onClose={handleDrawer}>
+      <Dialog
+        as="div"
+        className="fixed inset-0 overflow-hidden z-50"
+        onClose={handleDrawer}
+      >
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
@@ -21,28 +25,49 @@ export default function LiveChat({drawer, handleDrawer}) {
               leaveTo="translate-x-full"
             >
               <div className="pointer-events-auto w-screen max-w-md">
-                <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                  <div className="px-4 sm:px-6">
-                    <div className="flex items-start justify-between">
-                      <Dialog.Title className="text-lg font-medium text-gray-900"> Panel title </Dialog.Title>
-                      <div className="ml-3 flex h-7 items-center">
-                        <button
-                          type="button"
-                          className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-offset-2"
-                          onClick={handleDrawer}
-                        >
-                          <span className="sr-only">Close panel</span>
-                          <XCircleIcon className="h-6 w-6" aria-hidden="true" />
-                        </button>
+                <div className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+                  <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
+                    <div className="px-4 sm:px-6">
+                      <div className="flex items-start justify-between">
+                        <Dialog.Title className="text-lg font-medium text-gray-900">
+                          {" "}
+                          Panel title{" "}
+                        </Dialog.Title>
+                        <div className="ml-3 flex h-7 items-center">
+                          <button
+                            type="button"
+                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            onClick={() => handleDrawer(false)}
+                          >
+                            <span className="sr-only">Close panel</span>
+                            <XIcon className="h-6 w-6" aria-hidden="true" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                    {/* Replace with your content */}
-                    <div className="absolute inset-0 px-4 sm:px-6">
-                      <div className="h-full border-2 border-dashed border-gray-200" aria-hidden="true" />
+                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                      {/* Replace with your content */}
+                      <div
+                        className="h-full border-2 border-dashed border-gray-200"
+                        aria-hidden="true"
+                      />
+                      {/* /End replace */}
                     </div>
-                    {/* /End replace */}
+                  </div>
+                  <div className="flex flex-shrink-0 justify-end px-4 py-4">
+                    <button
+                      type="button"
+                      className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={() => handleDrawer(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </div>
@@ -51,5 +76,7 @@ export default function LiveChat({drawer, handleDrawer}) {
         </div>
       </Dialog>
     </Transition.Root>
-  )
-}
+  );
+};
+
+export default LiveChat;

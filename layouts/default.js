@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar handleDrawer={toggleDrawer}/>
-      <main className="min-h-screen relative z-20">{children}</main>
+      <main className="min-h-screen relative z-30">{children}</main>
       <LiveChat className="z-100" drawer={drawer} handleDrawer={toggleDrawer} />
       <Footer />
     </>

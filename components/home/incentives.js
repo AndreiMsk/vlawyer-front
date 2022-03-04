@@ -21,7 +21,7 @@ const features = [
   
   export default function Example() {
     return (
-      <div className="bg-white pb-16">
+      <div className="bg-white">
         <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Protect your device</h2>

@@ -1,9 +1,37 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
+import { XCircleIcon } from "@heroicons/react/solid";
+import InputChat from "components/chat/inputChat";
 
 const LiveChat = ({ drawer, handleDrawer }) => {
+  /* initialize state */
+  let [messages, setMessageBag] = useState([]);
+
+  useEffect(() => {
+    if (drawer && messages.length < 1) {
+      setHelloMessage();
+    }
+  }, [drawer]);
+
+  /* set hello/welcome message */
+  const setHelloMessage = () => {
+    setTimeout(() => {
+      setMessageBag([
+        ...messages,
+        {
+          message:
+            "Hello! My name is Angy and I am here to help you! What can I do for you today?",
+        },
+      ]);
+    }, 3000);
+  };
+
+  /* add to messages */
+  const addToMessages = (value) => {
+    setMessageBag([...messages, { message: value }]);
+  };
+
   return (
     <Transition.Root show={drawer} as={Fragment}>
       <Dialog
@@ -12,7 +40,7 @@ const LiveChat = ({ drawer, handleDrawer }) => {
         onClose={handleDrawer}
       >
         <div className="absolute inset-0 overflow-hidden">
-          <Dialog.Overlay className="absolute inset-0" />
+          <Dialog.Overlay className="absolute inset-0 bg-gray-200 bg-opacity-75 transition-opacity" />
 
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <Transition.Child
@@ -25,49 +53,50 @@ const LiveChat = ({ drawer, handleDrawer }) => {
               leaveTo="translate-x-full"
             >
               <div className="pointer-events-auto w-screen max-w-md">
-                <div className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+                <div className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-2xl relative">
                   <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-lg font-medium text-gray-900">
-                          {" "}
-                          Panel title{" "}
+                          <svg
+                            className="text-gray-600 bg-gray-500 rounded-lg h-24 w-24 absolute z-20 left-10 p-3"
+                            fill="#fff"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                          </svg>
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
                             onClick={() => handleDrawer(false)}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon className="h-6 w-6" aria-hidden="true" />
+                            <XCircleIcon
+                              className="h-6 w-6"
+                              aria-hidden="true"
+                            />
                           </button>
                         </div>
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {/* Replace with your content */}
                       <div
-                        className="h-full border-2 border-dashed border-gray-200"
+                        className="h-full bg-gray-300 rounded-lg pt-14 px-2 text-xs relative"
                         aria-hidden="true"
-                      />
-                      {/* /End replace */}
+                      >
+                        <ul className="absolute bottom-5 px-2">
+                          {messages &&
+                            Object.values(messages).map((message, key) => (
+                              <li key={key}>{message.message}</li>
+                            ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-shrink-0 justify-end px-4 py-4">
-                    <button
-                      type="button"
-                      className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={() => handleDrawer(false)}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      Save
-                    </button>
+                  <div className="px-6 py-1 bg-white">
+                    <InputChat addMessage={addToMessages} />
                   </div>
                 </div>
               </div>

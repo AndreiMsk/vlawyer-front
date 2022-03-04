@@ -21,7 +21,7 @@ const incentives = [
   export default function InfoMatic() {
     return (
       <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="bg-gray-100 rounded-2xl px-6 py-16 sm:p-16">
             <div className="max-w-xl mx-auto lg:max-w-none">
               <div className="text-center">

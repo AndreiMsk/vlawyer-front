@@ -88,8 +88,8 @@ export default function Hero() {
             <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-lg md:max-w-3xl">
               Call now and speak directly with one of our expert lawyers and
               have your problems addressed by professionists. For only 70 Euros
-              you can have a 1 one 1 video meeting for 1 hour, with one of your estimmed
-              experts.
+              you can have a 1 one 1 video meeting for 1 hour, with one of your
+              estimmed experts.
             </p>
             <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
               <div className="rounded-md shadow">
@@ -97,7 +97,7 @@ export default function Hero() {
                   href="#"
                   className="w-full flex flex-col items-center justify-center px-8 py-3 border border-transparent text-base font-normal rounded-md text-white bg-gray-600 hover:bg-gray-700 md:py-4 md:text-lg md:px-10"
                 >
-                <VideoCameraIcon className="h-10"/>
+                  <VideoCameraIcon className="h-10" />
                   VideoCall now
                 </a>
               </div>
@@ -106,7 +106,7 @@ export default function Hero() {
                   href="#"
                   className="w-full flex flex-col items-center justify-center px-8 py-3 border border-transparent text-sm rounded-md text-gray-500 bg-gray-300 hover:bg-gray-300 hover:text-gray-600 md:py-4 md:text-lg md:px-10"
                 >
-                 <CalendarIcon className="h-10"/>
+                  <CalendarIcon className="h-10" />
                   Schedule a call
                 </a>
               </div>

@@ -10,12 +10,14 @@ const Layout = ({ children }) => {
 
   /* method sent as props to sibling to toggle drawer on/off */
   const toggleDrawer = () => setDrawer(!drawer)
+
+  
   
   /* render default layout */
   return (
     <>
-      <Navbar handleDrawer={toggleDrawer}/>
-      <main className="min-h-screen relative z-30">{children}</main>
+      <Navbar handleDrawer={toggleDrawer} />
+      <main className="min-h-screen relative z-20 bg-white">{children}</main>
       <LiveChat className="z-100" drawer={drawer} handleDrawer={toggleDrawer} />
       <Footer />
     </>

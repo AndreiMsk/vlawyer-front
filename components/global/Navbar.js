@@ -11,7 +11,7 @@ function classNames(...classes) {
 
 export default function Navbar({handleDrawer}) {
   return (
-    <Disclosure as="nav" className="bg-white shadow sticky top-0 right-0 z-40">
+    <Disclosure as="nav" className="bg-white shadow z-30 sticky top-0 right-0">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,13 +65,13 @@ export default function Navbar({handleDrawer}) {
                     <LiveChatIcon />
                   </span>
   
-                <Link href="/">
+                <Link href="/auth/register">
                   <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
                     Register
                   </a>
                 </Link>
                 <span>|</span>
-                <Link href="/">
+                <Link href="/auth/login">
                   <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
                     Login
                   </a>

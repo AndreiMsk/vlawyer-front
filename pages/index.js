@@ -2,8 +2,9 @@ import Hero from 'components/home/hero'
 import InfoMatic from 'components/home/infomatic'
 import Incentives from 'components/home/incentives'
 import JoinTeam from 'components/home/join'
+import Layout from 'layouts/default'
 
-export default function Home() {
+const Home = () =>  {
   return (
     <div>
       <Hero />
@@ -13,3 +14,12 @@ export default function Home() {
     </div>
   )
 }
+
+/* get default layout */
+Home.getLayout = function getLayout(page) {
+  return (
+      <Layout>{page}</Layout>
+  )
+}
+
+export default Home;

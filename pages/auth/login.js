@@ -1,4 +1,5 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
+import Layout from 'layouts/default'
 
 const Login = () => {
   return (
@@ -80,5 +81,12 @@ const Login = () => {
     </div>
   );
 };
+
+/* get default layout */
+Login.getLayout = function getLayout(page) {
+  return (
+      <Layout>{page}</Layout>
+  )
+}
 
 export default Login;

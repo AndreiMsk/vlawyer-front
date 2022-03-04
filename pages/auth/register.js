@@ -1,5 +1,6 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
 import Link from "next/link";
+import Layout from 'layouts/default'
 
 const Register = () => {
   return (
@@ -137,5 +138,12 @@ const Register = () => {
     </div>
   );
 };
+
+/* get default layout */
+Register.getLayout = function getLayout(page) {
+  return (
+      <Layout>{page}</Layout>
+  )
+}
 
 export default Register;

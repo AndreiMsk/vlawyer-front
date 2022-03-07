@@ -1,36 +1,16 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XCircleIcon } from "@heroicons/react/solid";
 import InputChat from "components/chat/inputChat";
+import { StoreContext } from "pages/_app";
 
 const LiveChat = ({ drawer, handleDrawer }) => {
-  /* initialize state */
-  let [messages, setMessageBag] = useState([]);
+  /* instantiate context */
+  const context = useContext(StoreContext);
 
-  useEffect(() => {
-    if (drawer && messages.length < 1) {
-      setHelloMessage();
-    }
-  }, [drawer]);
-
-  /* set hello/welcome message */
-  const setHelloMessage = () => {
-    setTimeout(() => {
-      setMessageBag([
-        ...messages,
-        {
-          message:
-            "Hello! My name is Angy and I am here to help you! What can I do for you today?",
-        },
-      ]);
-    }, 3000);
-  };
-
-  /* add to messages */
-  const addToMessages = (value) => {
-    setMessageBag([...messages, { message: value }]);
-  };
+  /* extract messages from context */
+  const { messages } = context.state;
 
   return (
     <Transition.Root show={drawer} as={Fragment}>
@@ -87,16 +67,15 @@ const LiveChat = ({ drawer, handleDrawer }) => {
                         aria-hidden="true"
                       >
                         <ul className="absolute bottom-5 px-2">
-                          {messages &&
-                            Object.values(messages).map((message, key) => (
-                              <li key={key}>{message.message}</li>
+                          {messages && messages.map((message, key) => (
+                              <li key={key}>{message}</li>
                             ))}
                         </ul>
                       </div>
                     </div>
                   </div>
                   <div className="px-6 py-1 bg-white">
-                    <InputChat addMessage={addToMessages} />
+                    <InputChat />
                   </div>
                 </div>
               </div>

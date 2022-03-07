@@ -1,34 +1,47 @@
 import Navbar from "components/global/Navbar";
 import Footer from "components/global/Footer";
 import LiveChat from "components/global/LiveChat";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Echo from "laravel-echo";
-import Socketio from "socket.io-client";
+import { StoreContext, ACTION_TYPES } from "pages/_app";
+var client = require("pusher-js");
 
 const Layout = ({ children }) => {
-
   /* set intial state for drawer - closed  */
   const [drawer, setDrawer] = useState(false);
-
-  const [echo, setEcho] = useState(null);
 
   /* method sent as props to sibling to toggle drawer on/off */
   const toggleDrawer = () => setDrawer(!drawer);
 
-  /* create new ECHO instance once the layout is mounted */
-  useEffect(() => {
+  const {
+    dispatch,
+    state: { channel },
+  } = useContext(StoreContext);
 
-    /* new Echo instance */
-    const $echo = new Echo({
-      broadcaster: "socket.io",
-      host: "ws://your.host:8080",
-      client: Socketio,
+  const eventMessage = (data) => {
+    dispatch({
+      type: ACTION_TYPES.ADD_MESSAGE_TO_MESSAGE_BAG,
+      payload: data,
     });
+  };
 
-    /* assigen new instance of echo to local state */
-    setEcho($echo);
+  useEffect(() => {
+    if (channel && channel !== "") {
+      /* 1. create new ECHO instance once the layout is mounted */
+      const echo = new Echo({
+        broadcaster: "pusher",
+        key: "356cc28c7b5cd8012ac2",
+        cluster: "eu",
+        encrypted: true,
+        authEndpoint: "localhost:8000/api/broadcasting/auth",
+      });
 
-  }, []);
+      echo.channel(`${channel}`).listenToAll((event, data) => {
+        eventMessage(data.message.message);
+      });
+      
+    }
+  }, [channel]);
 
   /* render default layout */
   return (

@@ -13,10 +13,7 @@ const Layout = ({ children }) => {
   /* method sent as props to sibling to toggle drawer on/off */
   const toggleDrawer = () => setDrawer(!drawer);
 
-  const {
-    dispatch,
-    state: { channel },
-  } = useContext(StoreContext);
+  const { dispatch, state: { channel } } = useContext(StoreContext);
 
   const eventMessage = (data) => {
     dispatch({
@@ -37,7 +34,7 @@ const Layout = ({ children }) => {
       });
 
       echo.channel(`${channel}`).listenToAll((event, data) => {
-        eventMessage(data.message.message);
+        eventMessage(data.message);
       });
       
     }

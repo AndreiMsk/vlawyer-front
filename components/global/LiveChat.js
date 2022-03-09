@@ -1,7 +1,11 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState, useEffect, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XCircleIcon } from "@heroicons/react/solid";
+import {
+  ChatAlt2Icon,
+  UserCircleIcon,
+  XCircleIcon,
+} from "@heroicons/react/solid";
 import InputChat from "components/chat/inputChat";
 import { StoreContext } from "pages/_app";
 
@@ -11,6 +15,15 @@ const LiveChat = ({ drawer, handleDrawer }) => {
 
   /* extract messages from context */
   const { messages } = context.state;
+
+  useEffect(() => {
+    /* scroll to the last message added */
+    const objDiv = document.getElementById("messages");
+
+    if (objDiv && drawer) {
+      objDiv.scrollTop = objDiv.scrollHeight;
+    }
+  }, [messages, drawer]);
 
   return (
     <Transition.Root show={drawer} as={Fragment}>
@@ -33,18 +46,12 @@ const LiveChat = ({ drawer, handleDrawer }) => {
               leaveTo="translate-x-full"
             >
               <div className="pointer-events-auto w-screen max-w-md">
-                <div className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-2xl relative">
-                  <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
+                <div className="flex h-full flex-col bg-white shadow-2xl relative">
+                  <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll pt-6 pb-2">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-lg font-medium text-gray-900">
-                          <svg
-                            className="text-gray-600 bg-gray-500 rounded-lg h-24 w-24 absolute z-20 left-10 p-3"
-                            fill="#fff"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                          </svg>
+                          <ChatAlt2Icon className="text-white bg-gray-400 rounded-lg h-16 w-16 absolute z-20 left-3 p-3 top-8 shadow-md" />
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
@@ -61,14 +68,47 @@ const LiveChat = ({ drawer, handleDrawer }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                    <div className="relative mt-4 flex-1 px-4 sm:px-6">
                       <div
-                        className="h-full bg-gray-300 rounded-lg pt-14 px-2 text-xs relative"
+                        className="h-full bg-gray-100 shadow-md rounded-lg pt-14 text-xs relative overflow-hidden"
                         aria-hidden="true"
                       >
-                        <ul className="absolute bottom-5 px-2">
-                          {messages && messages.map((message, key) => (
-                              <li key={key}>{message}</li>
+                        <ul
+                          className="absolute bottom-1 px-2 h-full overflow-y-scroll pt-8 w-full"
+                          id="messages"
+                        >
+                          {messages &&
+                            messages.map((message, key) => (
+                              <li
+                                key={key}
+                                className={`p-1 flex block items-center ${
+                                  message.sender !== "admin"
+                                    ? "justify-start"
+                                    : "justify-end"
+                                }`}
+                              >
+                                {["guest", "user"].includes(message.sender) && (
+                                  <span className="inline-block">
+                                    <UserCircleIcon className="h-10 text-gray-500" />
+                                  </span>
+                                )}
+                                <span
+                                  className={`p-4 text-xs rounded-none my-1 inline-block w-3/4 
+                                  ${
+                                    ["guest", "user"].includes(message.sender)
+                                      ? "bg-gray-500 text-white rounded-t-xl rounded-br-xl"
+                                      : "bg-slate-300 border border-gray-200 text-slate-800 rounded-t-xl rounded-bl-xl"
+                                  }`}
+                                >
+                                  {message.message}
+                                  <span className="text-xs text-white d-block"></span>
+                                </span>
+                                {["admin"].includes(message.sender) && (
+                                  <span className="inline-block">
+                                    <UserCircleIcon className="h-10 text-slate-300" />
+                                  </span>
+                                )}
+                              </li>
                             ))}
                         </ul>
                       </div>

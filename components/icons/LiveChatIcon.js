@@ -1,7 +1,7 @@
-export default function LiveChatIcon() {
+export default function LiveChatIcon({notification}) {
   return (
     <div className="relative mr-3">
-      <span className="h-2 w-2 rounded-full bg-red-800 absolute top-0 right-0 inline-block animate-pulse"></span>
+      {notification && <span className="h-2 w-2 rounded-full bg-red-800 absolute top-0 right-0 inline-block animate-pulse"></span>}
       <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-7 w-7 mr-1 cursor-pointer"

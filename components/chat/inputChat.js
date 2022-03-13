@@ -11,36 +11,35 @@ const InputChat = () => {
   const handleOnChange = (e) => setMessage(e.target.value);
 
   /* get access to context */
-  const { dispatch, state } = useContext(StoreContext);
+  const { dispatch, state: { channel, messages } } = useContext(StoreContext);
 
-  /* extract messages from context */
-  const { channel, messages } = state;
 
+  /* send message handler - form data used to send data to API. Sender always guest or user */
   const handleSendMessage = async (event) => {
     event.preventDefault();
 
     /* no message, no sending */
-    if(!message.length) return;
+    if (!message.length) return;
 
     /* form data to send the message to the API */
     const data = new FormData();
     data.append('message', message);
-    data.append('channel', channel);
+    data.append('channel', channel && Object.values(channel).length ? channel.name : null);
     data.append('sender', 'guest');
 
     /* send message to API to retrieve the channel name to listen for */
     const response = await sendMessage(data);
 
-
     /* set channel in context */
-    dispatch({
-      type: ACTION_TYPES.SET_CHANNEL,
-      payload: response.data.data,
-    });
+    if (response && !channel) {
+      dispatch({
+        type: ACTION_TYPES.SET_CHANNEL,
+        payload: response.data.data,
+      });
+    }
 
+    // /* add to context ONLY if there is no message */
     if (!messages.length) {
-
-      // /* add to context */
       dispatch({
         type: ACTION_TYPES.ADD_MESSAGE_TO_MESSAGE_BAG,
         payload: {

@@ -9,7 +9,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({handleDrawer}) {
+const Navbar = ({ handleDrawer, notification }) => {
   return (
     <Disclosure as="nav" className="bg-white shadow z-30 sticky top-0 right-0">
       {({ open }) => (
@@ -40,13 +40,13 @@ export default function Navbar({handleDrawer}) {
 
                   <Link href="/">
                     <a className="text-gray-900 inline-flex items-center px-1 text-sm hover:text-gray-500">
-                     Fees
+                      Fees
                     </a>
                   </Link>
 
                   <Link href="/book">
                     <a className="text-white inline-flex items-center px-2 text-xs bg-gray-600 hover:bg-gray-700 h-8 rounded-md inline-block">
-                     <CalendarIcon className="h-5 w-5 mr-1"/>
+                      <CalendarIcon className="h-5 w-5 mr-1" />
                       Book a lawyer
                     </a>
                   </Link>
@@ -61,10 +61,10 @@ export default function Navbar({handleDrawer}) {
                   className="cursor-pointer"
                 />
 
-                  <span onClick={handleDrawer} className="inline-block mx-2">
-                    <LiveChatIcon />
-                  </span>
-  
+                <span onClick={handleDrawer} className="inline-block mx-2">
+                  <LiveChatIcon notification={notification} />
+                </span>
+
                 <Link href="/auth/register">
                   <a className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm hover:text-gray-500">
                     Register
@@ -260,3 +260,5 @@ export default function Navbar({handleDrawer}) {
     </Disclosure>
   );
 }
+
+export default Navbar;
